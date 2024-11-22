@@ -14,7 +14,7 @@ app.get("/", function (req, res) {
 
 app.listen(3000);
 
-console.log("hello");
+console.log("hello world!");
 // const http = require("http");
 
 // const handleRequest = (request, response) => {
