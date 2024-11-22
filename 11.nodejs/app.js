@@ -9,7 +9,9 @@ app.get("/currenttime", function (req, res) {
 }); //localhost:3000/currenttime
 
 app.get("/", function (req, res) {
-  res.send("<form><label>Your Name</label><input type = 'text'></form>");
+  res.send(
+    "<form><label>Your Name</label><input type = 'text'><button>submit</button></form>"
+  );
 });
 
 app.listen(3000);
