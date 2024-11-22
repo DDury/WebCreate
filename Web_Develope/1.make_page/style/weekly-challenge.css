@@ -1,0 +1,30 @@
+body {
+  text-align: center;
+  background-color: blanchedalmond;
+  padding: 70px;
+}
+
+h1 {
+  font-family: "Osward";
+  font-size: 75px;
+  color: peru;
+}
+p {
+  font-family: "Montserrat";
+  color: rgb(39, 24, 135);
+  font-size: 30px;
+}
+a {
+  text-decoration: none;
+  /* color: aqua; */
+}
+a:hover {
+  text-decoration: underline;
+  color: brown;
+}
+#link {
+  font-family: Osward;
+  font-size: 23px;
+  color: rgb(117, 20, 137);
+  text-align: end;
+}

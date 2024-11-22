@@ -1,0 +1,103 @@
+html {
+  font-family: Inter;
+  font-weight: 200;
+  background-color: #a4cfd3;
+}
+
+h1 {
+  font-weight: 400;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+form {
+  background-color: #d4e7e7;
+  box-shadow: 2px 2px 4px rgb(101, 96, 96);
+  width: 30rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+section1 label {
+  display: block;
+}
+section1 input {
+  width: 100%;
+  height: 1.5rem;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #c4d1a7;
+}
+
+textarea {
+  width: 100%;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+  resize: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+option {
+  display: flex;
+}
+
+select {
+  margin: 0.5rem 0;
+  height: 1.5rem;
+  width: 40%;
+  font-size: 1rem;
+  font-weight: 200;
+  font-family: inherit;
+}
+
+section3 {
+  display: flex;
+  justify-content: end;
+}
+
+button {
+  margin: 0.2rem;
+  width: 4.5rem;
+  height: 2rem;
+  font-size: 1rem;
+  border: 1px solid gray;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn_reset {
+  background-color: #b1cb95;
+}
+
+.btn_submit {
+  background-color: #c77bd8;
+}
+
+.btn_reset:hover {
+  background-color: #43651d;
+  color: beige;
+}
+
+.btn_submit:hover {
+  background-color: #672375;
+  color: beige;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contact us form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="share.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Contact us</h1>
+    </header>
+    <form action="/" method="get">
+      <section1>
+        <h2>How can we help you?</h2>
+        <ul>
+          <li>
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" required />
+          </li>
+          <li>
+            <label for="email">Your E-Mail Address</label>
+            <input type="email" name="email" id="email" required />
+          </li>
+          <li>
+            <label for="phone_num">Your Phone Number</label>
+            <input type="text" name="phone_num" id="phone_num" required />
+          </li>
+          <li>
+            <label for="msg">Your Message</label>
+            <textarea name="msg" id="msg" rows="8" , minlength="10"></textarea>
+          </li>
+          <li>
+            <label for="find_way">How did you find us?</label>
+            <select name="find_way" id="find_way" required>
+              <option value="">- please select -</option>
+              <option value="near">Close to home</option>
+              <option value="introduction">Introduces me</option>
+              <option value="online">Web Search</option>
+            </select>
+          </li>
+        </ul>
+        <hr />
+      </section1>
+      <section2>
+        <h2>How should we reply?</h2>
+        <ul>
+          <li>
+            <input type="radio" name="reply" id="callme" value="callme" />
+            <label for="callme">Call me</label>
+          </li>
+          <li>
+            <input type="radio" name="reply" id="sandmail" value="sendmail" />
+            <label for="sandmail">Send me an email</label>
+          </li>
+          <li>
+            <input type="radio" name="reply" id="dont" value="dont_reply" />
+            <label for="dont">Don't reply</label>
+          </li>
+        </ul>
+        <hr />
+        <input type="checkbox" name="agree" id="agree" />
+        <label for="agree">Accept Terms</label>
+      </section2>
+      <section3 class="btn">
+        <button type="reset" class="btn_reset">Clear</button>
+        <button type="submit" class="btn_submit">Submit</button>
+      </section3>
+    </form>
+  </body>
+</html>

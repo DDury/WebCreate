@@ -1,0 +1,124 @@
+body {
+  text-align: center;
+  background-color: rgb(233, 215, 207);
+  margin: 50px;
+
+}
+main {
+  border: 5px solid black;
+  background-color: rgb(107, 16, 16);
+  display: inline-block;
+  padding: 20px;
+  margin: 100px auto 20px auto;
+  font-family:"Fira Sans";
+}
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: 5px solid black;
+  margin-top: -125px;
+}
+#inline {
+  display: inline;
+}
+#inline-red {
+  display: inline;
+  color: aquamarine;
+  font-family:s "Montserrat";
+  font-size: 50px;
+}
+
+h1 {
+  font-family:"Montserrat";
+  /* text-align: center; */
+  color: rgb(198, 26, 207);
+  font-size: 50px;
+  margin: 20px 5px;
+}
+span {
+  color: rgb(180, 111, 154);
+}
+
+h2 {
+  margin: 10px;
+}
+header p {
+  margin: 20px;
+}
+main p {
+  margin: 12px;
+}
+p {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: large;
+  /* text-align: center; */
+  color: rgb(75, 7, 75);
+  margin: 20px;
+}
+
+ol {
+  list-style: circle;
+  width: 500px;
+  margin: 20px auto 0 auto;
+  padding: 10px;
+}
+li {
+  list-style: upper-roman;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 22px;
+  /* text-align: center; */
+  color: wheat;
+  background-color: rgb(107, 72, 142);
+  padding: 10px;
+  border: 2px solid darkblue;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3); 
+  /* list-style: decimal; */
+}
+a {
+  color: rgb(167, 1, 78);
+  background-color: goldenrod;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px 10px;
+  border: 1px solid black;
+  margin: 10px;
+  /* display: inline-block; */
+}
+ol a {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: gold;
+}
+
+#todays-challenge {
+  color: rgb(170, 96, 83);
+  /* font-style: italic; */
+  font-size: 40px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+#korean {
+  color: goldenrod;
+  font-family: "Noto Sans KR";
+  font-size: larger;
+  padding: 10px;
+}
+.daily-time {
+  margin: 15px;
+  color: red;
+}
+.highlight-goals:hover {
+  background-color: rgb(51, 51, 143);
+  cursor: cell;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>input button</title>
+    <link rel="stylesheet" href="share.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Demo form</h1>
+    </header>
+    <main>
+      <form action="/" method="get">
+        <hr />
+        <h2>Your information</h2>
+        <section>
+          <ul>
+            <li>
+              <label for="user-name">Your name</label>
+              <input type="text" name="user-name" id="user-name" required />
+            </li>
+            <li>
+              <label for="user-age">Your age</label>
+              <input
+                type="number"
+                step=""
+                name="user-age"
+                id="user-age"
+                min="18"
+                max="99"
+              />
+            </li>
+            <li>
+              <label for="user-birth">Your birthday</label>
+              <input
+                type="date"
+                name="user-birth"
+                id="user-birth"
+                max="2020-01-01"
+              />
+            </li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li>
+              <label for="user-email">Your email address</label>
+              <input
+                type="email"
+                name="user-email"
+                id="user-email"
+                required
+                placeholder="email address"
+              />
+            </li>
+            <li>
+              <label for="user-pw">Your password</label>
+              <input
+                type="password"
+                name="user-pw"
+                id="user-pw"
+                required
+                minlength="8"
+              />
+            </li>
+            <li>
+              <label for="user-message">Your message</label>
+              <textarea name="" id="user-message" , rows="10"></textarea>
+            </li>
+            <li>
+              <label for="favorite-color">Your favorite color</label>
+              <select name="favorite-color" id="color">
+                <option value="">- select -</option>
+                <option value="red">red</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+              </select>
+            </li>
+          </ul>
+        </section>
+        <hr />
+        <h2>How should we verify your account?</h2>
+        <section>
+          <ul>
+            <li class="form-contol-inline">
+              <input type="radio" name="veriify" value="SMS" id="text-msg" />
+              <label for="text-msg">via text message(SMS)</label>
+            </li>
+            <li class="form-contol-inline">
+              <input type="radio" name="veriify" value="call" id="phone" />
+              <label for="phone">via phone call</label>
+            </li>
+            <li class="form-contol-inline">
+              <input type="radio" name="veriify" value="email" id="email" />
+              <label for="email">via email</label>
+            </li>
+          </ul>
+        </section>
+        <hr />
+        <section>
+          <ul>
+            <li class="form-contol-inline">
+              <input type="checkbox" name="agree" value="yes" id="agree-term" />
+              <label for="agree-term">Agree to terms?</label>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+        </section>
+      </form>
+    </main>
+  </body>
+</html>

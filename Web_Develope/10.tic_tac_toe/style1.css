@@ -1,0 +1,58 @@
+#sketch-book {
+  background-color: black;
+  width: 748px;
+  height: 746px;
+  margin: 50px auto;
+  box-shadow: 2px 4px 8px black;
+  /* border: #004592 solid; */
+  display: grid;
+  gap: 9px;
+  grid-template-columns: 320px 198px 153px 50px;
+  grid-template-rows: 414px 130px 155px 20px;
+}
+
+#Red {
+  background-color: #e72f24;
+  grid-area: 1/1/2/2;
+}
+
+#Blue {
+  background-color: #004592;
+  grid-area: 2/4/3/5;
+  border-bottom: 10px solid black;
+}
+
+#Yellow {
+  background-color: #f9d01e;
+  grid-area: 4/2/5/3;
+}
+
+#Black {
+  background-color: #232629;
+  grid-area: 4/3/5/4;
+}
+
+#White1 {
+  background-color: #f0f1ec;
+  grid-area: 1/2/2/5;
+}
+
+#White2 {
+  background-color: #f0f1ec;
+  grid-area: 2/1/4/2;
+}
+
+#White3 {
+  background-color: #f0f1ec;
+  grid-area: 2/2/4/4;
+}
+
+#White4 {
+  background-color: #f0f1ec;
+  grid-area: 3/4/5/5;
+}
+
+#White5 {
+  background-color: #f0f1ec;
+  grid-area: 4/1/5/2;
+}

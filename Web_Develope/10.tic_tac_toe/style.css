@@ -1,0 +1,104 @@
+header {
+  /* width: 320px; */
+  /* margin-left: 60px; */
+  margin-bottom: 50px;
+  text-align: center;
+  width: 70%;
+}
+
+.aside {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 5rem;
+  background-color: aqua;
+  display: none;
+}
+#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.7);
+  display: none;
+}
+
+h1 {
+  /* margin-left: 70px; */
+  color: rgb(242, 0, 255);
+  /* width: 300px; */
+  background-color: bisque;
+  text-align: center;
+  box-shadow: 1px 1px 2px gray;
+}
+.player {
+  display: flex;
+  justify-content: center;
+  box-shadow: 2px 4px 8px gray;
+  border-radius: 15px;
+  text-shadow: 0.5px 0.5px 1px gray;
+  /* text-align: center; */
+}
+
+.player section {
+  width: 80px;
+  height: 220px;
+  /* margin-left: 45px; */
+  text-align: center;
+  padding: 2rem;
+}
+
+.name {
+  font-size: 20px;
+  color: rgb(13, 94, 94);
+}
+
+.symbol {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.start {
+  font-size: 20px;
+  margin: 10px;
+  margin-left: 95px;
+  margin-top: 20px;
+  box-shadow: 1px 1px 2px gray;
+}
+
+.ttt {
+  display: grid;
+  justify-content: center;
+  /* align-items: center; */
+  width: 250px;
+  height: 250px;
+  margin-left: 20%;
+  margin-right: 20%;
+  gap: 5px;
+  grid-template-columns: repeat(3, 6rem);
+  grid-template-rows: repeat(3, 6rem);
+  list-style-type: none;
+}
+
+.ttt li {
+  background-color: rgb(135, 163, 220);
+  border-radius: 10px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-shadow: 1px 1px 2px;
+  box-shadow: 1px 1px 2px gray;
+  padding-top: 10px;
+}
+
+.ttt li:hover {
+  background-color: rgba(45, 150, 85, 0.404);
+}
+
+.highlight {
+  background-color: aquamarine;
+}

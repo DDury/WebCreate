@@ -1,0 +1,85 @@
+body {
+  background: linear-gradient(75deg, gray, black);
+}
+
+header {
+  position:static;
+}
+
+header a {
+  color: aqua;
+}
+
+header ul a:hover {
+  background-color: aqua;
+  color: black;
+  text-shadow: none;
+}
+
+#page-logo a {
+  color: aqua;
+}
+
+main ul {
+    display: grid;  
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;   
+    width: 1200px;
+    margin: 40px auto;
+
+}
+
+main ul li:nth-of-type(3) {
+    grid-column: 1/span 2;
+}
+
+main ul li:nth-of-type(6) {
+    grid-column: span 2;
+}
+
+main li img {
+  width: 300px;
+  height: 280px;
+  object-fit: cover;
+}
+
+
+
+main li {
+  display: flex;
+  background-color: aliceblue;
+  border-radius: 12px;
+  box-shadow: 1px 1px 4px gray;
+  overflow: hidden;
+
+}
+
+.item-content {
+    color: rgb(49, 48, 48);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    padding-left: 15px;
+
+}
+
+.actions {
+    text-align: right;
+ padding: 10px;
+}
+
+.actions a {
+    color: rgb(22, 105, 105);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 10px;
+}
+
+.actions a:hover {
+    background-color: rgb(145, 247, 247);
+    border-radius: 5px;
+    padding: 10px;
+}
+
