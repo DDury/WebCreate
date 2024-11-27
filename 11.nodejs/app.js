@@ -1,5 +1,8 @@
 const currenttime = new Date().toISOString();
 
+const fs = require("fs");
+const path = require("path");
+
 const express = require("express");
 
 const app = express();
@@ -9,7 +12,24 @@ app.get("/currenttime", function (req, res) {
 }); //localhost:3000/currenttime
 
 app.get("/", function (req, res) {
-  res.send("<form><label>Your Name</label><input type = 'text'></form>");
+  res.send(
+    '<form action="/store-user" method="POST"><label>Your Name</label><input type = "text" name="username"><button>submit</button></form>'
+  );
+});
+
+app.post("/store-user", function (res, req) {
+  const userName = req.body.username;
+
+  const filepath = path.join(__dirname, "data", "users.json");
+
+  const fileData = fs.readFileSync(filepath);
+  const existingUsers = JSON.parse(fileData);
+
+  existingUsers.push(userName);
+
+  fs.writeFileSync(filepath, JSON.stringify(existingUsers));
+
+  res.send("<h1>username stored!</h1>");
 });
 
 app.listen(3000);
