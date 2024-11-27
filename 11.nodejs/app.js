@@ -13,6 +13,7 @@ app.get("/currenttime", function (req, res) {
 
 app.get("/", function (req, res) {
   res.send(
+<<<<<<< HEAD
     '<form action="/store-user" method="POST"><label>Your Name</label><input type = "text" name="username"><button>submit</button></form>'
   );
 });
@@ -30,6 +31,10 @@ app.post("/store-user", function (res, req) {
   fs.writeFileSync(filepath, JSON.stringify(existingUsers));
 
   res.send("<h1>username stored!</h1>");
+=======
+    "<form><label>Your Name</label><input type = 'text'><button>submit</button></form>"
+  );
+>>>>>>> 451d193ba3dfd95c998711ff32beea6d1a8cd804
 });
 
 app.listen(3000);
