@@ -4,11 +4,14 @@
   "description": "Getting startied with Node & Express",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon myapp.js"
   },
   "author": "shkim",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
