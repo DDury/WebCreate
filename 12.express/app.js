@@ -23,7 +23,10 @@ for (const ad of adrs) {
     const jspath = path.join(__dirname, "data.json");
     const jsdata = fs.readFileSync(jspath);
     const exdata = JSON.parse(jsdata);
-    res.render(`${ad}`, { numberOfRestaurants: exdata.length });
+    res.render(`${ad}`, {
+      numberOfRestaurants: exdata.length,
+      restaurants: exdata,
+    });
   });
 }
 
