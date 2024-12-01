@@ -10,9 +10,9 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/shared.css" />
-    <link rel="stylesheet" href="styles/index.css" />
-    <script src="scripts/responsive.js" defer></script>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <script src="/scripts/responsive.js" defer></script>
   </head>
   <body>
     <%- include("includes/header") %> <%- include('includes/aside') %>
@@ -24,7 +24,7 @@
       </p>
       <ul id="actions">
         <li>
-          <a href="/restaurants">Browse Shared Restaurants</a>
+          <a href="/restaurants">Browse Shared Restaurants<%= rid %></a>
         </li>
         <li>
           <a href="/recommend">Share Your Favorite Restaurant</a>

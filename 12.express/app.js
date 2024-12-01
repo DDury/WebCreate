@@ -1,5 +1,6 @@
 const exp = require("constants");
 const express = require("express");
+const uuid = require("uuid");
 const app = express();
 const fs = require("fs");
 const path = require("path");
@@ -30,8 +31,26 @@ for (const ad of adrs) {
   });
 }
 
+app.get("/restaurants/:id", function (req, res) {
+  const resId = req.params.id;
+  const jspath = path.join(__dirname, "data.json");
+  const jsdata = fs.readFileSync(jspath);
+  const exdata = JSON.parse(jsdata);
+  for (const restaurant of exdata) {
+    if (restaurant.name === resId) {
+      return res.render("resid", { rid: resId, res: restaurant });
+    }
+  }
+});
+
+app.get("/some/:id", function (req, res) {
+  const paid = req.params.id;
+  res.render("index", { rid: paid });
+});
+
 app.post("/recommend", function (req, res) {
   const resData = req.body;
+  resData.id = uuid.v4();
   const jspath = path.join(__dirname, "data.json");
   const jsdata = fs.readFileSync(jspath);
   const exdata = JSON.parse(jsdata);
