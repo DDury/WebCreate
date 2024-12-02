@@ -27,6 +27,7 @@ for (const ad of adrs) {
     res.render(`${ad}`, {
       numberOfRestaurants: exdata.length,
       restaurants: exdata,
+      rid: "!",
     });
   });
 }
@@ -39,13 +40,15 @@ app.get("/restaurants/:id", function (req, res) {
   for (const restaurant of exdata) {
     if (restaurant.name === resId) {
       return res.render("resid", { rid: resId, res: restaurant });
+    } else {
+      res.render("error/404error");
     }
   }
 });
 
 app.get("/some/:id", function (req, res) {
   const paid = req.params.id;
-  res.render("index", { rid: paid });
+  res.render("index", { rid: "!" });
 });
 
 app.post("/recommend", function (req, res) {
