@@ -32,6 +32,10 @@ for (const ad of adrs) {
   });
 }
 
+app.get("", function (req, res) {
+  res.redirect("/some/1");
+});
+
 app.get("/restaurants/:id", function (req, res) {
   const resId = req.params.id;
   const jspath = path.join(__dirname, "data.json");
@@ -62,4 +66,4 @@ app.post("/recommend", function (req, res) {
   res.redirect("/confirm");
 });
 
-app.listen(3000);
+app.listen(2000);
