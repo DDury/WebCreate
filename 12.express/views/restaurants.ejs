@@ -20,6 +20,11 @@
       <h1>Recommended restaurants</h1>
       <p>Find your next favorite restaurants with help of our other users!</p>
       <p>We found <%=numberOfRestaurants%> restaurants.</p>
+
+      <form action="/restaurants" , method="get">
+        <input type="hidden" value="asc" , name="ordery" />
+        <button class="btn">change order</button>
+      </form>
       <ul id="restaurants-list">
         <% for (const res of restaurants) {%> <%-
         include('includes/lists',{restaurant:res}) %> <% } %>
