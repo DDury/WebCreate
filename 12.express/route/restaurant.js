@@ -15,9 +15,18 @@ const adrs = ["index", "restaurants", "recommend", "about", "confirm"];
 for (const ad of adrs) {
   Router.get(`/${ad}`, function (req, res) {
     const exdata = readData.getData();
+    let order = req.query.ordery;
+    let nextorder = "desc";
+
+    if (order === "asc") {
+      nextorder = "desc";
+    } else nextorder = "asc";
 
     exdata.sort(function (resA, resB) {
-      if (resA.name > resB.name) {
+      if (
+        (resA.name > resB.name && order == "asc") ||
+        (resA.name < resB.name && order == "desc")
+      ) {
         return 1;
       }
       return -1;
@@ -27,6 +36,7 @@ for (const ad of adrs) {
       numberOfRestaurants: exdata.length,
       restaurants: exdata,
       rid: "!",
+      order: nextorder,
     });
   });
 }
