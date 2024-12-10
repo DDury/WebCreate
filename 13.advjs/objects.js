@@ -1,3 +1,5 @@
+const { describe } = require("node:test");
+
 const job = {
   title: "Developer",
   location: "Daegu",
@@ -18,7 +20,7 @@ class Profile {
     this.place = b;
     this.salary = c;
   }
-  descrive() {
+  describe() {
     console.log(
       `I'm a ${this.title}, work in ${this.place}, salary is ${this.salary}`
     );
@@ -27,4 +29,6 @@ class Profile {
 
 const job2 = new Profile("SH", "Daegu", 100000);
 
-job2.descrive();
+job2.describe();
+const { title, location, salary } = job1;
+console.log(title, location);
