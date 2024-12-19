@@ -12,6 +12,20 @@ router.get("/posts", function (req, res) {
   res.render("posts-list");
 });
 
+router.post("/posts", async function (req, res) {
+  const contents = [
+    req.body.title,
+    req.body.summary,
+    req.body.content,
+    req.body.author,
+  ];
+  await db.query(
+    "insert into posts (title, summary,body,authorid) values (?)",
+    [contents]
+  );
+  res.redirect("/posts");
+});
+
 router.get("/new-post", async function (req, res) {
   const [authors] = await db.query("select * from authors");
   res.render("create-post", { authors: authors });
