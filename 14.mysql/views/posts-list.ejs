@@ -9,9 +9,8 @@
     <%- include('includes/header') %>
     <main id="all-posts">
       <h1>All Posts</h1>
-      <% postings.forEach((post) =>{%>
-      <h2><%=post.id%> . <%= post.title %> | date : <%=post.date %></h2>
-      <%});%>
+      <% postings.forEach((post) =>{%> <%-include('includes/post-item',{post :
+      post}) %> <%});%>
     </main>
   </body>
 </html>
