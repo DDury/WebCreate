@@ -8,8 +8,9 @@ router.get("/", function (req, res) {
   res.redirect("/posts");
 });
 
-router.get("/posts", function (req, res) {
-  res.render("posts-list");
+router.get("/posts", async function (req, res) {
+  const [postings] = await db.query("select * from posts");
+  res.render("posts-list", { postings: postings });
 });
 
 router.post("/posts", async function (req, res) {
