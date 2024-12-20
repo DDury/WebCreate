@@ -49,9 +49,10 @@ router.get("/post-detail/:id", async function (req, res) {
   res.render("post-detail", { post: postdata });
 });
 
-router.get("/update/:id", function (req, res) {
+router.get("/update/:id", async function (req, res) {
   const id = req.params.id;
-  res.render("update-post", { id: id });
+  const [posting] = await db.query("select * from posts where id = ?", id);
+  res.render("update-post", { id: id, post: posting[0] });
 });
 
 router.post("/modify/:id", async function (req, res) {
@@ -74,6 +75,12 @@ router.post("/modify/:id", async function (req, res) {
     req.params.id,
   ]);
 
+  res.redirect("/");
+});
+
+router.post("/posts/:id/delete", async function (req, res) {
+  const id = req.params.id;
+  await db.query("delete from posts where id = ?", id);
   res.redirect("/");
 });
 
