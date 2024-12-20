@@ -41,7 +41,40 @@ router.get("/post-detail/:id", async function (req, res) {
     where posts.id = ?`;
 
   const [post] = await db.query(query, [req.params.id]);
-  res.render("post-detail", { post: post[0] });
+  const postdata = {
+    ...post[0],
+    date: post[0].date.toLocaleDateString(),
+  };
+
+  res.render("post-detail", { post: postdata });
+});
+
+router.get("/update/:id", function (req, res) {
+  const id = req.params.id;
+  res.render("update-post", { id: id });
+});
+
+router.post("/modify/:id", async function (req, res) {
+  const innercontents = [
+    req.body.title,
+    req.body.summary,
+    req.body.content,
+    req.params.id,
+  ];
+
+  const query = `
+  update posts 
+  set title = ?, summary = ?, body = ? 
+  where id = ?
+  `;
+  await db.query(query, [
+    req.body.title,
+    req.body.summary,
+    req.body.content,
+    req.params.id,
+  ]);
+
+  res.redirect("/");
 });
 
 module.exports = router;

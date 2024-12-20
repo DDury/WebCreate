@@ -10,7 +10,8 @@
     <main id="post-detail">
       <h1><%= post.title %></h1>
       <section id="post-meta">
-        <a href="<%= post.email %>">mail to <%= post.name %></a>
+        <p><%= post.name %></p>
+        <a href="<%= post.email %>"><%= post.email %></a>
         <time datetime="<%= post.date %>"> | <%= post.date %></time>
       </section>
       <hr />
