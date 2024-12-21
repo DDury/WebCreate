@@ -1,9 +1,11 @@
-console.log(1);
-
-let database = 3;
+let data = 1;
 
 const ex = () => {
-  database = 5;
+  data = 5;
 };
 
-console.log(database);
+const ex2 = () => {
+  console.log(data);
+};
+ex();
+ex2();
