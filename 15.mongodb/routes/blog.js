@@ -11,8 +11,9 @@ router.get("/", function (req, res) {
   res.redirect("/posts");
 });
 
-router.get("/posts", function (req, res) {
-  res.render("posts-list");
+router.get("/posts", async function (req, res) {
+  const posts = await db.getdb().collection("posts").find().toArray();
+  res.render("posts-list", { posts: posts });
 });
 
 router.get("/new-post", async function (req, res) {
@@ -34,12 +35,25 @@ router.post("/posts", async function (req, res) {
     body: req.body.content,
     date: new Date(),
     author: {
-      id: new ObjectId(req.body.author),
+      id: objectid,
       name: authordata.name,
       email: authordata.email,
     },
   };
   await db.getdb().collection("posts").insertOne(newpost);
+  res.redirect("/posts");
+});
+
+router.get("/add-author", function (req, res) {
+  res.render("create-author");
+});
+
+router.post("/add-author", async function (req, res) {
+  const authordata = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  await db.getdb().collection("authors").insertOne(authordata);
   res.redirect("/posts");
 });
 

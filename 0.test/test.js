@@ -1,11 +1,12 @@
-let data = 1;
+const { MongoClient } = require("mongodb");
+const uri = "mongodb://localhost:27017";
+const client = new MongoClient(uri);
 
-const ex = () => {
-  data = 5;
-};
+async function run() {
+  const database = client.db("firstDB");
+  const users = database.collection("users"); //collection은 테이블이다.
 
-const ex2 = () => {
-  console.log(data);
-};
-ex();
-ex2();
+  const userData = await users.insertOne({ name: "nicewjdqls", age: 32 });
+  console.log("result", userData);
+}
+run();
