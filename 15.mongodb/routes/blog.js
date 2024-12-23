@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("../data/database");
 const database = require("../data/database");
 const mongodb = require("mongodb");
-const ObjectId = mongodb.ObjectId();
+const ObjectId = mongodb.ObjectId;
 
 const router = express.Router();
 
@@ -11,8 +11,9 @@ router.get("/", function (req, res) {
   res.redirect("/posts");
 });
 
-router.get("/posts", function (req, res) {
-  res.render("posts-list");
+router.get("/posts", async function (req, res) {
+  const posts = await db.getdb().collection("posts").find().toArray();
+  res.render("posts-list", { posts: posts });
 });
 
 router.get("/new-post", async function (req, res) {
@@ -43,11 +44,11 @@ router.post("/posts", async function (req, res) {
   res.redirect("/posts");
 });
 
-router.get("add-author", function (req, res) {
+router.get("/add-author", function (req, res) {
   res.render("create-author");
 });
 
-router.post("add-author", async function (req, res) {
+router.post("/add-author", async function (req, res) {
   const authordata = {
     name: req.body.name,
     email: req.body.email,
