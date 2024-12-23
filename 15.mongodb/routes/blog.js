@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("../data/database");
 const database = require("../data/database");
 const mongodb = require("mongodb");
-const ObjectId = mongodb.ObjectId;
+const ObjectId = mongodb.ObjectId();
 
 const router = express.Router();
 
@@ -34,12 +34,25 @@ router.post("/posts", async function (req, res) {
     body: req.body.content,
     date: new Date(),
     author: {
-      id: new ObjectId(req.body.author),
+      id: objectid,
       name: authordata.name,
       email: authordata.email,
     },
   };
   await db.getdb().collection("posts").insertOne(newpost);
+  res.redirect("/posts");
+});
+
+router.get("add-author", function (req, res) {
+  res.render("create-author");
+});
+
+router.post("add-author", async function (req, res) {
+  const authordata = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  await db.getdb().collection("authors").insertOne(authordata);
   res.redirect("/posts");
 });
 
