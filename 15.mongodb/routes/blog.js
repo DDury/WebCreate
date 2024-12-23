@@ -75,7 +75,7 @@ router.post("/update-post/:id", async function (req, res) {
     title: req.body.title,
     summary: req.body.summary,
     body: req.body.content,
-    date: new Date(),
+    update: new Date(),
   };
   await db.getdb().collection("posts").updateOne({ _id: id }, { $set: update });
   res.redirect("/posts");
