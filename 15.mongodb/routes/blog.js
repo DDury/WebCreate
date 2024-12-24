@@ -57,8 +57,6 @@ router.post("/add-author", async function (req, res) {
   res.redirect("/posts");
 });
 
-<<<<<<< HEAD
-=======
 router.get("/detail/:id", async function (req, res) {
   const id = new ObjectId(req.params.id);
   const post = await db.getdb().collection("posts").findOne({ _id: id });
@@ -88,7 +86,7 @@ router.post("/posts/:id/delete", async function (req, res) {
   await db.getdb().collection("posts").deleteOne({ _id: id });
   res.redirect("/posts");
 });
->>>>>>> 2094dd9795b9adfa4884beb9dbe132812fc7e17c
+
 module.exports = router;
 
 //title summary body date author(id,name,email)
