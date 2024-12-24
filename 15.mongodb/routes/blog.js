@@ -86,6 +86,7 @@ router.post("/posts/:id/delete", async function (req, res) {
   await db.getdb().collection("posts").deleteOne({ _id: id });
   res.redirect("/posts");
 });
+
 module.exports = router;
 
 //title summary body date author(id,name,email)
