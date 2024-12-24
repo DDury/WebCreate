@@ -57,6 +57,38 @@ router.post("/add-author", async function (req, res) {
   res.redirect("/posts");
 });
 
+<<<<<<< HEAD
+=======
+router.get("/detail/:id", async function (req, res) {
+  const id = new ObjectId(req.params.id);
+  const post = await db.getdb().collection("posts").findOne({ _id: id });
+  res.render("post-detail", { post: post });
+});
+
+router.get("/posts/edit/:id", async function (req, res) {
+  const id = new ObjectId(req.params.id);
+  const post = await db.getdb().collection("posts").findOne({ _id: id });
+  res.render("update-post", { post: post });
+});
+
+router.post("/update-post/:id", async function (req, res) {
+  const id = new ObjectId(req.params.id);
+  const update = {
+    title: req.body.title,
+    summary: req.body.summary,
+    body: req.body.content,
+    update: new Date(),
+  };
+  await db.getdb().collection("posts").updateOne({ _id: id }, { $set: update });
+  res.redirect("/posts");
+});
+
+router.post("/posts/:id/delete", async function (req, res) {
+  const id = new ObjectId(req.params.id);
+  await db.getdb().collection("posts").deleteOne({ _id: id });
+  res.redirect("/posts");
+});
+>>>>>>> 2094dd9795b9adfa4884beb9dbe132812fc7e17c
 module.exports = router;
 
 //title summary body date author(id,name,email)
