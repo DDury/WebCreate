@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/profiles.css" />
   </head>
   <body>
+    <script src="/scripts/file-preview.js" defer></script>
     <main id="new-user">
       <form action="/profiles" method="POST" enctype="multipart/form-data">
         <div class="form-control">
@@ -16,6 +17,7 @@
           <input type="text" id="username" name="username" required />
         </div>
         <div class="form-control">
+          <img id="preview" src="" alt="your picked image" />
           <label for="image">User image</label>
           <input
             type="file"
