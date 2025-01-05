@@ -25,4 +25,21 @@ async function getcomment() {
   section.appendChild(commentlist);
 }
 
+const saveBtn = document.querySelector("#comments-form form");
+const titleinp = document.getElementById("title");
+const textnp = document.getElementById("text");
+
+async function savecomment(event) {
+  event.preventDefault();
+  const id = saveBtn.dataset.postid;
+  const newcomment = { title: titleinp.value, text: textnp.value };
+  await fetch(`/posts/${id}/comments`, {
+    method: "post",
+    body: JSON.stringify(newcomment),
+    headers: { "Content-type": "application/json" },
+  });
+  getcomment();
+}
+
 commentBtn.addEventListener("click", getcomment);
+saveBtn.addEventListener("submit", savecomment);
