@@ -19,10 +19,13 @@ async function getcomment() {
   const response = await fetch(`/posts/${id}/comments`);
   const resdata = await response.json();
   console.log(resdata);
-
-  const commentlist = listarray(resdata);
-  section.innerHTML = "";
-  section.appendChild(commentlist);
+  if (resdata.length > 0) {
+    const commentlist = listarray(resdata);
+    section.innerHTML = "";
+    section.appendChild(commentlist);
+  } else {
+    section.firstElementChild.textContent = "please leave first comment!";
+  }
 }
 
 const saveBtn = document.querySelector("#comments-form form");
