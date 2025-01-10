@@ -1,0 +1,101 @@
+/* 
+  html에 62.5%로 지정하면, 
+  16px * 0.625 = 10px => 1rem = 10px 으로 가정
+*/
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: sans-serif;
+  /* body 자체 폰트 크기는 1.6rem = 16px 로 설정 */
+  font-size: 1.6rem;
+  background-color: #f0f0f0;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 패널 열기 버튼 스타일 */
+.open-btn {
+  position: fixed;
+  top: 2rem; /* 20px -> 2rem */
+  left: 2rem; /* 20px -> 2rem */
+  padding: 1rem 2rem; /* 10px 20px -> 1rem 2rem */
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem; /* 5px -> 0.5rem */
+}
+.open-btn:hover {
+  background-color: #444;
+}
+
+/* 슬라이드 패널 */
+.slide-panel {
+  position: fixed;
+  top: 0;
+  /* 처음엔 화면 오른쪽 밖으로 (300px -> 30rem) */
+  right: -80rem;
+  width: 30rem;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -0.3rem 0 0.5rem rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  /* 내부 여백 (20px -> 2rem) */
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* 패널이 열렸을 때 */
+.slide-panel.open {
+  right: 0;
+}
+
+/* 패널 내 스크롤바 커스터마이징 (WebKit 전용) */
+.slide-panel::-webkit-scrollbar {
+  width: 0.8rem; /* 8px -> 0.8rem */
+}
+.slide-panel::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+.slide-panel::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 0.4rem; /* 4px -> 0.4rem */
+}
+
+/* 패널 닫기 버튼 */
+.close-btn {
+  display: inline-block;
+  margin-bottom: 2rem; /* 20px -> 2rem */
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  padding: 0.8rem 1.6rem; /* 8px 16px -> 0.8rem 1.6rem */
+  border-radius: 0.4rem; /* 4px -> 0.4rem */
+}
+.close-btn:hover {
+  background-color: #ddd;
+}
+
+/* 패널 안의 내용 예시 */
+.panel-content {
+  margin-top: 1rem; /* 10px -> 1rem */
+}
+.panel-content p {
+  margin-bottom: 1rem; /* 10px -> 1rem */
+  line-height: 1.5;
+}
+
+/* 반응형 디자인: 화면이 600px 이하일 때 */
+@media screen and (max-width: 600px) {
+  /* 모바일 등 작은 화면에서는 패널 폭을 80%로 */
+  .slide-panel {
+    width: 80%;
+    right: -80%;
+  }
+  .slide-panel.open {
+    right: 0;
+  }
+}
