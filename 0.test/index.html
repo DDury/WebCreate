@@ -2,43 +2,35 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>MEDI4LAB Slide Panel + Bottom Popup Example</title>
+    <title>Island Popup + Slide Panel + Live Filtering</title>
 
-    <!-- 파비콘(Favicon) 설정 -->
-    <link rel="icon" type="image/png" href="medi4lab_logo.png" />
-
-    <!-- Google Fonts: Noto Sans KR (예시) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- 외부 CSS 파일 연결 -->
+    <!-- CSS 연결 -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- 헤더 영역 -->
+    <!-- 헤더 (데모용) -->
     <header class="site-header">
-      <!-- 로고 이미지 -->
-      <img src="medi4lab_logo.png" alt="MEDI4LAB 로고" class="site-logo" />
-      <h1 class="site-title">MEDI4LAB</h1>
+      <h1>아일랜드 팝업 & 우측 패널 + 실시간 필터링</h1>
     </header>
 
     <!-- 메인 콘텐츠 영역 -->
     <main class="site-content">
-      <p>MEDI4LAB 페이지의 예시 컨텐츠 영역입니다.</p>
+      <p>
+        이 예시는 우측 슬라이드 패널과 아일랜드 팝업(실시간 필터링 포함)을 함께
+        구현한 코드입니다.
+      </p>
 
-      <!-- 슬라이드 패널 열기 버튼 -->
+      <!-- 우측 패널 열기 버튼 -->
       <button class="open-btn" id="openPanelBtn">우측 패널 열기</button>
 
-      <!-- 하단 팝업 열기 버튼 -->
-      <button class="popup-open-btn" id="openBottomPopup">
-        하단 팝업 열기
+      <!-- 아일랜드 팝업 열기 버튼 -->
+      <button class="island-open-btn" id="openIslandBtn">
+        아일랜드 팝업 열기
       </button>
 
-      <!-- (1) 오른쪽 슬라이드 패널 -->
+      <!-- (1) 우측 슬라이드 패널 -->
       <div class="slide-panel" id="slidePanel">
-        <!-- 닫기 버튼을 감싸는 상단 영역 (sticky) -->
+        <!-- 패널 상단 (닫기 버튼) - sticky -->
         <div class="panel-header">
           <button class="close-btn" id="closePanelBtn">닫기</button>
         </div>
@@ -76,23 +68,23 @@
         </div>
       </div>
 
-      <!-- (2) 하단 팝업 창 -->
-      <div class="bottom-popup" id="bottomPopup">
-        <!-- 팝업 상단 영역 (입력창 + 닫기 버튼) => sticky로 고정 -->
-        <div class="popup-header">
+      <!-- (2) 아일랜드 팝업 -->
+      <div class="bottom-island" id="bottomIsland">
+        <!-- 상단 영역 (검색창 + 닫기 버튼) -->
+        <div class="island-header">
           <input
             type="text"
-            placeholder="여기에 텍스트 입력..."
-            class="popup-input"
+            placeholder="검색어를 입력하세요..."
+            class="island-input"
           />
-          <button class="popup-close-btn" id="closeBottomPopup">닫기</button>
+          <button class="island-close-btn" id="closeIslandBtn">닫기</button>
         </div>
-
-        <!-- 팝업 내용(스크롤 영역) -->
-        <div class="popup-content">
-          <h2>하단 팝업 내용</h2>
-          <p>하단에서 올라오는 팝업 창 예시입니다.</p>
-          <p>이 영역도 스크롤할 수 있으며, 입력창은 상단에 고정됩니다.</p>
+        <!-- 팝업 내용(실시간 검색 대상 문단들) -->
+        <div class="island-content">
+          <h2>아일랜드 팝업 내용</h2>
+          <p>
+            이 영역에서 검색어를 입력하면, 해당 단어를 포함한 문단만 표시됩니다.
+          </p>
           <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <p>
             2. Sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -111,17 +103,14 @@
             qui.
           </p>
           <p>6. Mollit anim id est laborum. Lorem ipsum dolor sit amet.</p>
-          <p>7. More content here to test scrolling...</p>
-          <p>8. More content here to test scrolling...</p>
-          <p>9. More content here to test scrolling...</p>
-          <p>10. More content here to test scrolling...</p>
-          <p>11. More content here to test scrolling...</p>
-          <p>12. More content here to test scrolling...</p>
+          <p>7. More content for testing the scroll or layout...</p>
+          <p>8. More content for testing the scroll or layout...</p>
+          <p>9. More content for testing the scroll or layout...</p>
         </div>
       </div>
     </main>
 
-    <!-- 외부 JS 파일 연결 -->
+    <!-- JS 연결 -->
     <script src="script.js"></script>
   </body>
 </html>
