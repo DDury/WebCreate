@@ -6,17 +6,20 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   /* Noto Sans KR 폰트 적용 (예시) */
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 1.6rem; /* 1.6rem = 16px */
+  font-size: 1.6rem; /* 16px */
   background-color: #f7f7f7;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* --------------------- */
 /* 헤더 영역 스타일 */
+/* --------------------- */
 .site-header {
   display: flex;
   align-items: center;
@@ -34,9 +37,9 @@ body {
 
 /* 헤더 타이틀 */
 .site-title {
-  font-size: 2rem; /* 2rem = 20px */
-  font-weight: 700; /* 굵은 글씨 */
-  margin: 0; /* 혹시 기본 여백이 있을 경우 제거 */
+  font-size: 2rem; /* 20px */
+  font-weight: 700;
+  margin: 0;
 }
 
 /* 메인 콘텐츠 영역 */
@@ -44,28 +47,32 @@ body {
   padding: 2rem;
 }
 
-/* 슬라이드 패널 열기 버튼 */
+/* --------------------- */
+/* 우측 슬라이드 패널 관련 */
+/* --------------------- */
+
+/* 우측 패널 열기 버튼 */
 .open-btn {
   display: inline-block;
-  margin-top: 2rem; /* 20px -> 2rem */
-  padding: 1rem 2rem; /* 10px 20px -> 1rem 2rem */
+  margin-top: 2rem;
+  padding: 1rem 2rem;
   background-color: #333;
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 0.5rem; /* 5px -> 0.5rem */
+  border-radius: 0.5rem;
   font-weight: 400;
 }
 .open-btn:hover {
   background-color: #444;
 }
 
-/* 슬라이드 패널 */
+/* 슬라이드 패널 컨테이너 */
 .slide-panel {
   position: fixed;
   top: 0;
-  right: -50rem; /* 300px -> 30rem */
-  width: 35rem; /* 300px -> 30rem */
+  right: -50rem; /* 처음엔 보이지 않음 (300px -> 30rem) */
+  width: 30rem; /* 300px -> 30rem */
   height: 100%;
   background-color: #fff;
   box-shadow: -0.3rem 0 0.5rem rgba(0, 0, 0, 0.2);
@@ -78,17 +85,14 @@ body {
   right: 0;
 }
 
-/* 
-  닫기 버튼이 있는 패널 상단 영역
-  position: sticky로 설정하면 스크롤해도 상단에 고정됨
-*/
+/* 패널 상단(Header) - 닫기 버튼 sticky */
 .panel-header {
   position: sticky;
   top: 0;
   background-color: #fff;
-  z-index: 10; /* 패널 내용을 덮도록(숫자는 필요에 따라 조정) */
-  padding: 2rem; /* 닫기 버튼 상하좌우 여백 */
-  border-bottom: 0.1rem solid #ddd; /* 구분선(optional) */
+  z-index: 10;
+  padding: 2rem;
+  border-bottom: 0.1rem solid #ddd;
 }
 
 /* 패널 닫기 버튼 */
@@ -97,44 +101,140 @@ body {
   cursor: pointer;
   background-color: #eee;
   border: none;
-  padding: 0.8rem 1.6rem; /* 8px 16px -> 0.8rem 1.6rem */
-  border-radius: 0.4rem; /* 4px -> 0.4rem */
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.4rem;
   font-weight: 400;
 }
 .close-btn:hover {
   background-color: #ddd;
 }
 
-/* 패널 안의 내용 */
+/* 패널 내용 */
 .panel-content {
-  padding: 0 2rem 2rem 2rem; /* panel-header와 분리해서 패딩 적용 */
+  padding: 0 2rem 2rem 2rem;
 }
 .panel-content p {
-  margin-bottom: 1rem; /* 10px -> 1rem */
+  margin-bottom: 1rem;
   line-height: 1.6;
   font-weight: 400;
 }
 
-/* 패널 내 스크롤바 (WebKit 전용 커스텀) */
+/* 패널 내 스크롤바 (WebKit 전용) */
 .slide-panel::-webkit-scrollbar {
-  width: 0.8rem; /* 8px -> 0.8rem */
+  width: 0.8rem;
 }
 .slide-panel::-webkit-scrollbar-track {
   background: #f0f0f0;
 }
 .slide-panel::-webkit-scrollbar-thumb {
   background-color: #bbb;
-  border-radius: 0.4rem; /* 4px -> 0.4rem */
+  border-radius: 0.4rem;
 }
 
-/* 반응형: 화면이 600px 이하일 때 (모바일 등) */
+/* --------------------- */
+/* 하단 팝업 관련 */
+/* --------------------- */
+
+/* 하단 팝업 열기 버튼 */
+.popup-open-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  margin-left: 1rem; /* 예시로 약간의 좌측 여백 */
+  padding: 1rem 2rem;
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-weight: 400;
+}
+.popup-open-btn:hover {
+  background-color: #005a99;
+}
+
+/* 하단 팝업 컨테이너 */
+.bottom-popup {
+  position: fixed;
+  left: 0;
+  bottom: -60%; /* 처음에는 화면 아래쪽에 숨겨짐 (적당한 값으로) */
+  width: 100%;
+  height: 60%; /* 팝업 높이 - 필요에 따라 조절 */
+  background-color: #fff;
+  box-shadow: 0 -0.3rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: bottom 0.3s ease;
+  display: flex;
+  flex-direction: column; /* 상단(header) + 스크롤 영역(column) */
+}
+
+/* 팝업이 열렸을 때 */
+.bottom-popup.open {
+  bottom: 0;
+}
+
+/* 팝업 상단(Header) - 입력창/닫기 버튼 sticky */
+.popup-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+/* 팝업 입력창 */
+.popup-input {
+  flex: 1; /* 버튼 옆에 남은 공간 차지 */
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  margin-right: 1rem; /* 버튼과 간격 */
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+}
+
+/* 팝업 닫기 버튼 */
+.popup-close-btn {
+  background-color: #eee;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.popup-close-btn:hover {
+  background-color: #ddd;
+}
+
+/* 팝업 내용(스크롤 영역) */
+.popup-content {
+  overflow-y: auto; /* 스크롤 가능 */
+  padding: 1rem;
+  flex: 1; /* 남은 공간 전체 사용 */
+}
+.popup-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* --------------------- */
+/* 반응형 (모바일 등) */
+/* --------------------- */
 @media screen and (max-width: 600px) {
-  /* 패널 너비를 80%로 */
+  /* 우측 패널 너비를 80%로 */
   .slide-panel {
     width: 80%;
     right: -80%;
   }
   .slide-panel.open {
     right: 0;
+  }
+
+  /* 하단 팝업 높이를 70%로 (예시) */
+  .bottom-popup {
+    height: 70%;
+    bottom: -70%;
+  }
+  .bottom-popup.open {
+    bottom: 0;
   }
 }

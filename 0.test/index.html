@@ -2,12 +2,12 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>MEDI4LAB Slide Panel Example (Sticky Close Button)</title>
+    <title>MEDI4LAB Slide Panel + Bottom Popup Example</title>
 
     <!-- 파비콘(Favicon) 설정 -->
     <link rel="icon" type="image/png" href="medi4lab_logo.png" />
 
-    <!-- Google Fonts: Noto Sans KR 불러오기 (예시) -->
+    <!-- Google Fonts: Noto Sans KR (예시) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
       rel="stylesheet"
@@ -21,7 +21,7 @@
     <header class="site-header">
       <!-- 로고 이미지 -->
       <img src="medi4lab_logo.png" alt="MEDI4LAB 로고" class="site-logo" />
-      <h1 class="site-title"></h1>
+      <h1 class="site-title">MEDI4LAB</h1>
     </header>
 
     <!-- 메인 콘텐츠 영역 -->
@@ -29,18 +29,22 @@
       <p>MEDI4LAB 페이지의 예시 컨텐츠 영역입니다.</p>
 
       <!-- 슬라이드 패널 열기 버튼 -->
-      <button class="open-btn" id="openPanelBtn">열기</button>
+      <button class="open-btn" id="openPanelBtn">우측 패널 열기</button>
 
-      <!-- 슬라이드 패널 -->
+      <!-- 하단 팝업 열기 버튼 -->
+      <button class="popup-open-btn" id="openBottomPopup">
+        하단 팝업 열기
+      </button>
+
+      <!-- (1) 오른쪽 슬라이드 패널 -->
       <div class="slide-panel" id="slidePanel">
-        <!-- 닫기 버튼을 감싸는 상단 영역 -->
+        <!-- 닫기 버튼을 감싸는 상단 영역 (sticky) -->
         <div class="panel-header">
           <button class="close-btn" id="closePanelBtn">닫기</button>
         </div>
 
-        <!-- 패널 실제 내용 -->
         <div class="panel-content">
-          <h2>상세 내용</h2>
+          <h2>우측 패널 상세 내용</h2>
           <p>이 영역에 원하는 상세 내역을 넣을 수 있습니다.</p>
           <p>
             예: 주문 내역, 제품 정보, 이미지, FAQ 등 다양한 정보를 배치하세요.
@@ -69,6 +73,50 @@
           <p>8. More content here to test scrolling...</p>
           <p>9. More content here to test scrolling...</p>
           <p>10. More content here to test scrolling...</p>
+        </div>
+      </div>
+
+      <!-- (2) 하단 팝업 창 -->
+      <div class="bottom-popup" id="bottomPopup">
+        <!-- 팝업 상단 영역 (입력창 + 닫기 버튼) => sticky로 고정 -->
+        <div class="popup-header">
+          <input
+            type="text"
+            placeholder="여기에 텍스트 입력..."
+            class="popup-input"
+          />
+          <button class="popup-close-btn" id="closeBottomPopup">닫기</button>
+        </div>
+
+        <!-- 팝업 내용(스크롤 영역) -->
+        <div class="popup-content">
+          <h2>하단 팝업 내용</h2>
+          <p>하단에서 올라오는 팝업 창 예시입니다.</p>
+          <p>이 영역도 스크롤할 수 있으며, 입력창은 상단에 고정됩니다.</p>
+          <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>
+            2. Sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua.
+          </p>
+          <p>
+            3. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris.
+          </p>
+          <p>
+            4. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum.
+          </p>
+          <p>
+            5. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+            qui.
+          </p>
+          <p>6. Mollit anim id est laborum. Lorem ipsum dolor sit amet.</p>
+          <p>7. More content here to test scrolling...</p>
+          <p>8. More content here to test scrolling...</p>
+          <p>9. More content here to test scrolling...</p>
+          <p>10. More content here to test scrolling...</p>
+          <p>11. More content here to test scrolling...</p>
+          <p>12. More content here to test scrolling...</p>
         </div>
       </div>
     </main>
