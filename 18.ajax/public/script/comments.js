@@ -1,5 +1,8 @@
 const commentBtn = document.getElementById("load-comments");
 const section = document.getElementById("comments");
+const saveBtn = document.querySelector("#comments-form form");
+const titleinp = document.getElementById("title");
+const textnp = document.getElementById("text");
 
 const listarray = (comments) => {
   const cre_ol = document.createElement("ol");
@@ -27,10 +30,6 @@ async function getcomment() {
     section.firstElementChild.textContent = "please leave first comment!";
   }
 }
-
-const saveBtn = document.querySelector("#comments-form form");
-const titleinp = document.getElementById("title");
-const textnp = document.getElementById("text");
 
 async function savecomment(event) {
   event.preventDefault();
