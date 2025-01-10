@@ -1,32 +1,60 @@
 /* 
-  html에 62.5%로 지정하면, 
-  16px * 0.625 = 10px => 1rem = 10px 으로 가정
+  1rem = 10px 기반 설정:
+  일반적으로 브라우저 기본 폰트 크기가 16px이므로 
+  16px * 0.625 = 10px => 1rem = 10px
 */
 html {
   font-size: 62.5%;
 }
 body {
-  font-family: sans-serif;
-  /* body 자체 폰트 크기는 1.6rem = 16px 로 설정 */
-  font-size: 1.6rem;
-  background-color: #f0f0f0;
-  height: 100vh;
+  /* Noto Sans KR 폰트 적용 (예시) */
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.6rem; /* 1.6rem = 16px */
+  background-color: #f7f7f7;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 패널 열기 버튼 스타일 */
+/* 헤더 영역 스타일 */
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-bottom: 0.1rem solid #ccc; /* 1px -> 0.1rem */
+}
+
+/* 로고 이미지 */
+.site-logo {
+  width: 15rem; /* 50px -> 5rem */
+  height: auto;
+  margin-right: 1rem;
+}
+
+/* 헤더 타이틀 */
+.site-title {
+  font-size: 2rem; /* 2rem = 20px */
+  font-weight: 700; /* 굵은 글씨 */
+  margin: 0; /* 혹시 기본 여백이 있을 경우 제거 */
+}
+
+/* 메인 콘텐츠 영역 */
+.site-content {
+  padding: 2rem;
+}
+
+/* 슬라이드 패널 열기 버튼 */
 .open-btn {
-  position: fixed;
-  top: 2rem; /* 20px -> 2rem */
-  left: 2rem; /* 20px -> 2rem */
+  display: inline-block;
+  margin-top: 2rem; /* 20px -> 2rem */
   padding: 1rem 2rem; /* 10px 20px -> 1rem 2rem */
   background-color: #333;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 0.5rem; /* 5px -> 0.5rem */
+  font-weight: 400;
 }
 .open-btn:hover {
   background-color: #444;
@@ -36,24 +64,58 @@ body {
 .slide-panel {
   position: fixed;
   top: 0;
-  /* 처음엔 화면 오른쪽 밖으로 (300px -> 30rem) */
-  right: -80rem;
-  width: 30rem;
+  right: -50rem; /* 300px -> 30rem */
+  width: 35rem; /* 300px -> 30rem */
   height: 100%;
   background-color: #fff;
   box-shadow: -0.3rem 0 0.5rem rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease;
-  /* 내부 여백 (20px -> 2rem) */
-  padding: 2rem;
-  overflow-y: auto;
+  overflow-y: auto; /* 내부 스크롤 */
 }
 
-/* 패널이 열렸을 때 */
+/* 패널 열렸을 때 */
 .slide-panel.open {
   right: 0;
 }
 
-/* 패널 내 스크롤바 커스터마이징 (WebKit 전용) */
+/* 
+  닫기 버튼이 있는 패널 상단 영역
+  position: sticky로 설정하면 스크롤해도 상단에 고정됨
+*/
+.panel-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 10; /* 패널 내용을 덮도록(숫자는 필요에 따라 조정) */
+  padding: 2rem; /* 닫기 버튼 상하좌우 여백 */
+  border-bottom: 0.1rem solid #ddd; /* 구분선(optional) */
+}
+
+/* 패널 닫기 버튼 */
+.close-btn {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  padding: 0.8rem 1.6rem; /* 8px 16px -> 0.8rem 1.6rem */
+  border-radius: 0.4rem; /* 4px -> 0.4rem */
+  font-weight: 400;
+}
+.close-btn:hover {
+  background-color: #ddd;
+}
+
+/* 패널 안의 내용 */
+.panel-content {
+  padding: 0 2rem 2rem 2rem; /* panel-header와 분리해서 패딩 적용 */
+}
+.panel-content p {
+  margin-bottom: 1rem; /* 10px -> 1rem */
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* 패널 내 스크롤바 (WebKit 전용 커스텀) */
 .slide-panel::-webkit-scrollbar {
   width: 0.8rem; /* 8px -> 0.8rem */
 }
@@ -65,32 +127,9 @@ body {
   border-radius: 0.4rem; /* 4px -> 0.4rem */
 }
 
-/* 패널 닫기 버튼 */
-.close-btn {
-  display: inline-block;
-  margin-bottom: 2rem; /* 20px -> 2rem */
-  cursor: pointer;
-  background-color: #eee;
-  border: none;
-  padding: 0.8rem 1.6rem; /* 8px 16px -> 0.8rem 1.6rem */
-  border-radius: 0.4rem; /* 4px -> 0.4rem */
-}
-.close-btn:hover {
-  background-color: #ddd;
-}
-
-/* 패널 안의 내용 예시 */
-.panel-content {
-  margin-top: 1rem; /* 10px -> 1rem */
-}
-.panel-content p {
-  margin-bottom: 1rem; /* 10px -> 1rem */
-  line-height: 1.5;
-}
-
-/* 반응형 디자인: 화면이 600px 이하일 때 */
+/* 반응형: 화면이 600px 이하일 때 (모바일 등) */
 @media screen and (max-width: 600px) {
-  /* 모바일 등 작은 화면에서는 패널 폭을 80%로 */
+  /* 패널 너비를 80%로 */
   .slide-panel {
     width: 80%;
     right: -80%;
