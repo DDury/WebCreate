@@ -22,12 +22,29 @@ body {
 /* 헤더 및 메인 컨테이너 */
 /* -------------------- */
 .site-header {
+  /* 가로 배치 (Flex 컨테이너) */
+  display: flex;
+  /* 세로 중앙 정렬 (로고, h1 세로 중간 맞춤) */
+  align-items: center;
+  /* 여백 설정 (간격 띄우고 싶으면 gap, margin-right 등 사용) */
+  gap: 1rem;
+
   padding: 1.5rem;
   background-color: #fff;
   border-bottom: 0.1rem solid #ccc;
 }
+
+/* h1 기본 폰트 크기(기존 코드) */
 .site-header h1 {
-  font-size: 2rem;
+  font-size: 3rem;
+  /* display: flex; => 삭제 혹은 주석 처리 */
+}
+
+/* 로고 이미지 스타일 (선택 사항) 
+   필요에 따라 크기 조정, margin-right 등 추가 */
+#logoimg {
+  width: 25rem;
+  height: auto; /* 비율 유지 */
 }
 
 .site-content {
