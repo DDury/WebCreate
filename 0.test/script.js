@@ -51,3 +51,23 @@ islandInput.addEventListener("input", () => {
     }
   });
 });
+// 클릭 이벤트로 서브메뉴 표시/숨김 제어
+document.querySelectorAll(".menu-item > a").forEach((menu) => {
+  menu.addEventListener("click", (e) => {
+    e.preventDefault(); // 기본 링크 동작 막기
+    const submenu = menu.nextElementSibling;
+    if (submenu && submenu.classList.contains("submenu")) {
+      submenu.style.display =
+        submenu.style.display === "block" ? "none" : "block";
+    }
+  });
+});
+
+// 클릭 외부 영역에서 서브메뉴 숨기기 (선택 사항)
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".menu-item")) {
+    document
+      .querySelectorAll(".submenu")
+      .forEach((submenu) => (submenu.style.display = "none"));
+  }
+});

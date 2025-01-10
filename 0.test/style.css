@@ -27,11 +27,17 @@ body {
   /* 세로 중앙 정렬 (로고, h1 세로 중간 맞춤) */
   align-items: center;
   /* 여백 설정 (간격 띄우고 싶으면 gap, margin-right 등 사용) */
-  gap: 1rem;
-
+  gap: 4rem;
   padding: 1.5rem;
+  padding-left: 5rem;
   background-color: #fff;
   border-bottom: 0.1rem solid #ccc;
+}
+
+.site-header.bg-light {
+  background-color: #cfd7e2; /* 밝은 회색 배경 */
+  color: #333; /* 기본 텍스트 색상 */
+  border: none;
 }
 
 /* h1 기본 폰트 크기(기존 코드) */
@@ -45,10 +51,80 @@ body {
 #logoimg {
   width: 25rem;
   height: auto; /* 비율 유지 */
+  margin-bottom: 0.3rem;
 }
 
 .site-content {
   padding: 2rem;
+}
+
+/* -------------------- */
+/* 메뉴바 스타일 */
+/* -------------------- */
+.navbar {
+  margin-left: 5rem; /* 로고와 메뉴 사이 간격 확보 */
+  /* margin: auto; */
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 5rem; /* 메뉴 간 간격 */
+}
+
+.menu-item {
+  position: relative; /* 하위 메뉴 위치 조정을 위해 */
+}
+
+.menu-item > a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: #333;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.menu-item > a:hover {
+  background-color: #f0f0f0;
+  border-radius: 0.4rem;
+}
+
+/* 서브메뉴 기본 숨김 */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* 부모 메뉴 아래에 배치 */
+  left: 0;
+  background-color: #fff;
+  list-style: none;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 15rem;
+}
+
+.submenu li {
+  padding: 0;
+}
+
+.submenu li a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #333;
+  padding: 1.2rem 0.2rem;
+  display: block;
+}
+
+.submenu li a:hover {
+  background-color: #f0f0f0;
+  border-radius: 0;
+}
+
+/* 메뉴에 호버하면 서브메뉴 표시 */
+.menu-item:hover .submenu {
+  display: block;
 }
 
 /* -------------------- */
