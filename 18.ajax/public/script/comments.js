@@ -35,11 +35,14 @@ async function savecomment(event) {
   event.preventDefault();
   const id = saveBtn.dataset.postid;
   const newcomment = { title: titleinp.value, text: textnp.value };
-  await fetch(`/posts/${id}/comments`, {
+  const response = await fetch(`/posts/${id}/comments`, {
     method: "post",
     body: JSON.stringify(newcomment),
     headers: { "Content-type": "application/json" },
   });
+  const result = await response.json();
+  alert(result.message);
+  console.log(result.message);
   getcomment();
 }
 
