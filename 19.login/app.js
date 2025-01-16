@@ -6,7 +6,7 @@ const session = require("express-session");
 const mongodbstore = require("connect-mongodb-session");
 const MongoDBStore = mongodbstore(session);
 const sessionStore = new MongoDBStore({
-  uri: "mongodb://localhost:27017",
+  uri: "mongodb://127.0.0.1:27017",
   databaseName: "auth-demo",
   collection: "sessions",
 });

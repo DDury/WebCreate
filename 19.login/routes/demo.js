@@ -57,6 +57,7 @@ router.post("/login", async function (req, res) {
     req.session.user = {
       id: currentUser._id.toString(),
       email: currentUser.email,
+      role : currentUser.role
     };
     req.session.isAuthenticated = true;
     req.session.save(function () {
@@ -76,6 +77,38 @@ router.get("/admin", function (req, res) {
     // console.log("Session:", req.session);
   }
 });
+
+router.get('/register',function(req,res){
+  if(req.session.user.role ==='admin'){
+     return res.render('reg_adm')}
+     else {res.status(401).render('401')
+     }
+  
+})
+
+router.post('/register', async function(req,res){
+  const target_user = await db.getDb().collection('userdata').findOne({email:req.body.email})
+  if (!target_user){
+    console.log('no user')
+    return res.redirect('/register') 
+  } else {
+    await db.getDb().collection('userdata').updateOne({email:req.body.email},{$set:{role:'admin'}})
+ console.log('level up!')
+ res.redirect('/login')
+  }
+})
+
+router.post('/delete_admin', async function(req,res){
+  const target_user = await db.getDb().collection('userdata').findOne({email:req.body.email})
+  if (!target_user){
+    console.log('no user')
+    return res.redirect('/register') 
+  } else {
+    await db.getDb().collection('userdata').updateOne({email:req.body.email},{$set:{role:'user'}})
+ console.log('level down!')
+ res.redirect('/login')
+  }
+})
 
 router.post("/logout", function (req, res) {
   req.session.user = null;
