@@ -15,6 +15,8 @@ const db = require("./data/database");
 const demoRoutes = require("./routes/demo");
 const database = require("./data/database");
 const { Collection } = require("mongodb");
+const { ObjectId } = require("mongodb");
+const { userInfo } = require("os");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -31,6 +33,27 @@ app.use(
     store: sessionStore,
   })
 );
+
+app.use(async function (req, res, next) {
+  const user = req.session.user;
+  const isauth = req.session.isAuthenticated;
+
+  if (!user || !isauth) {
+    return next();
+  }
+
+  const userinfo = await db
+    .getDb()
+    .collection("userdata")
+    .findOne({ _id: new ObjectId(user.id) });
+
+  const role = userinfo.role;
+
+  res.locals.isauth = isauth;
+  res.locals.role = role;
+
+  next();
+});
 app.use(demoRoutes);
 
 app.use(function (error, req, res, next) {

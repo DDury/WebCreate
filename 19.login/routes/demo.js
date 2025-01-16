@@ -15,7 +15,15 @@ router.get("/signup", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
-  res.render("login");
+  let sessionData = req.session.inputData;
+  if (!sessionData) {
+    sessionData = {
+      haserror: false,
+      message: "",
+    };
+  }
+  req.session.inputData = null;
+  res.render("login", { inputData: sessionData });
 });
 
 router.post("/signup", async function (req, res) {
@@ -48,8 +56,16 @@ router.post("/login", async function (req, res) {
 
   if (!currentUser) {
     console.log("no user");
-    return res.redirect("/login");
+    req.session.inputData = {
+      haserror: true,
+      message: "No user. please check again!",
+    };
+    req.session.save(function () {
+      res.redirect("/login");
+    });
+    return;
   }
+
   const verify = await bcrypt.compare(req.body.password, currentUser.password);
 
   if (verify) {
@@ -57,20 +73,28 @@ router.post("/login", async function (req, res) {
     req.session.user = {
       id: currentUser._id.toString(),
       email: currentUser.email,
-      role : currentUser.role
+      role: currentUser.role,
+    };
+    req.session.inputData = {
+      haserror: false,
+      message: "",
     };
     req.session.isAuthenticated = true;
     req.session.save(function () {
-      return res.redirect("/admin");
+      return res.redirect("/");
     });
   } else {
     console.log("wrong password");
+    req.session.inputData = {
+      haserror: true,
+      message: "Wrong password. please check again!",
+    };
     res.redirect("/login");
   }
 });
 
 router.get("/admin", function (req, res) {
-  if (!req.session.isAuthenticated) {
+  if (!res.locals.role || res.locals.role !== "admin") {
     return res.status(401).render("401");
   } else {
     res.render("admin");
@@ -78,37 +102,54 @@ router.get("/admin", function (req, res) {
   }
 });
 
-router.get('/register',function(req,res){
-  if(req.session.user.role ==='admin'){
-     return res.render('reg_adm')}
-     else {res.status(401).render('401')
-     }
-  
-})
-
-router.post('/register', async function(req,res){
-  const target_user = await db.getDb().collection('userdata').findOne({email:req.body.email})
-  if (!target_user){
-    console.log('no user')
-    return res.redirect('/register') 
-  } else {
-    await db.getDb().collection('userdata').updateOne({email:req.body.email},{$set:{role:'admin'}})
- console.log('level up!')
- res.redirect('/login')
+router.get("/register", function (req, res) {
+  if (
+    !req.session.user ||
+    !req.session.user.role ||
+    req.session.user.role === "user"
+  ) {
+    res.status(401).render("401");
+    return;
+  } else if (req.session.user.role === "admin") {
+    return res.render("reg_adm");
   }
-})
+});
 
-router.post('/delete_admin', async function(req,res){
-  const target_user = await db.getDb().collection('userdata').findOne({email:req.body.email})
-  if (!target_user){
-    console.log('no user')
-    return res.redirect('/register') 
+router.post("/register", async function (req, res) {
+  const target_user = await db
+    .getDb()
+    .collection("userdata")
+    .findOne({ email: req.body.email });
+  if (!target_user) {
+    console.log("no user");
+    return res.redirect("/register");
   } else {
-    await db.getDb().collection('userdata').updateOne({email:req.body.email},{$set:{role:'user'}})
- console.log('level down!')
- res.redirect('/login')
+    await db
+      .getDb()
+      .collection("userdata")
+      .updateOne({ email: req.body.email }, { $set: { role: "admin" } });
+    console.log("level up!");
+    res.redirect("/login");
   }
-})
+});
+
+router.post("/delete_admin", async function (req, res) {
+  const target_user = await db
+    .getDb()
+    .collection("userdata")
+    .findOne({ email: req.body.email });
+  if (!target_user) {
+    console.log("no user");
+    return res.redirect("/register");
+  } else {
+    await db
+      .getDb()
+      .collection("userdata")
+      .updateOne({ email: req.body.email }, { $set: { role: "user" } });
+    console.log("level down!");
+    res.redirect("/login");
+  }
+});
 
 router.post("/logout", function (req, res) {
   req.session.user = null;
