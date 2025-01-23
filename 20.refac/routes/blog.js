@@ -246,7 +246,6 @@ router.get("/posts/:id/edit", async function (req, res) {
 router.post("/posts/:id/edit", async function (req, res) {
   const enteredTitle = req.body.title;
   const enteredContent = req.body.content;
-  const postId = new ObjectId(req.params.id);
 
   if (
     !enteredTitle ||
@@ -265,16 +264,15 @@ router.post("/posts/:id/edit", async function (req, res) {
     return;
   }
   ///class
-  const post = new Posting(enteredTitle, enteredContent, postId);
+  const post = new Posting(enteredTitle, enteredContent, req.params.id);
   post.save("posts");
 
   res.redirect("/admin");
 });
 
 router.post("/posts/:id/delete", async function (req, res) {
-  const postId = new ObjectId(req.params.id);
   ///class
-  const post = new Posting(null, null, postId);
+  const post = new Posting(null, null, req.params.id);
   post.delete("posts");
 
   res.redirect("/admin");

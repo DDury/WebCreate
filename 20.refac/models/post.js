@@ -1,8 +1,12 @@
-const db = require("../data/database.js");
+const db = require("../data/database");
+const mongodb = require("mongodb");
+const ObjectId = mongodb.ObjectId;
 
 class Posting {
   constructor(title, content, id) {
-    (this.title = title), (this.content = content), (this.id = id);
+    (this.title = title),
+      (this.content = content),
+      (this.id = new ObjectId(id));
   }
 
   async save(collection) {
