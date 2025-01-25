@@ -6,7 +6,7 @@ class Posting {
   constructor(title, content, id) {
     (this.title = title),
       (this.content = content),
-      (this.id = new ObjectId(id));
+      (this.id = id ? new ObjectId(id) : null);
   }
 
   async save(collection) {
@@ -27,6 +27,15 @@ class Posting {
   }
   async delete(collection) {
     await db.getDb().collection(collection).deleteOne({ _id: this.id });
+  }
+
+  async fetch(collection) {
+    const post = await db
+      .getDb()
+      .collection(collection)
+      .findOne({ _id: this.id });
+    this.title = post.title;
+    this.content = post.content;
   }
 }
 

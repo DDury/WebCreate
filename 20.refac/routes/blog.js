@@ -217,8 +217,8 @@ router.post("/posts", async function (req, res) {
 });
 
 router.get("/posts/:id/edit", async function (req, res) {
-  const postId = new ObjectId(req.params.id);
-  const post = await db.getDb().collection("posts").findOne({ _id: postId });
+  const post = new Posting(null, null, req.params.id);
+  await post.fetch("posts");
 
   if (!post) {
     return res.render("404"); // 404.ejs is missing at this point - it will be added later!
