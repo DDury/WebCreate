@@ -1,16 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const mongodb = require("mongodb");
 
 const db = require("../data/database");
-const Posting = require("../models/post.js");
+const Pcon = require("../controllers/post-controller.js");
 
-const ObjectId = mongodb.ObjectId;
 const router = express.Router();
 
-router.get("/", function (req, res) {
-  res.render("welcome", { csrfToken: req.csrfToken() });
-});
+router.get("/", Pcon.getHome);
 
 router.get("/signup", function (req, res) {
   let sessionInputData = req.session.inputData;
@@ -157,125 +153,20 @@ router.post("/login", async function (req, res) {
   });
 });
 
-router.get("/admin", async function (req, res) {
-  if (!res.locals.isAuth) {
-    return res.status(401).render("401");
-  }
-
-  const posts = await db.getDb().collection("posts").find().toArray();
-
-  let sessionInputData = req.session.inputData;
-
-  if (!sessionInputData) {
-    sessionInputData = {
-      hasError: false,
-      title: "",
-      content: "",
-    };
-  }
-
-  req.session.inputData = null;
-
-  res.render("admin", {
-    posts: posts,
-    inputData: sessionInputData,
-    csrfToken: req.csrfToken(),
-  });
-});
-
 router.post("/logout", function (req, res) {
   req.session.user = null;
   req.session.isAuthenticated = false;
   res.redirect("/");
 });
 
-router.post("/posts", async function (req, res) {
-  const enteredTitle = req.body.title;
-  const enteredContent = req.body.content;
+router.get("/admin", Pcon.getAdmin);
 
-  if (
-    !enteredTitle ||
-    !enteredContent ||
-    enteredTitle.trim() === "" ||
-    enteredContent.trim() === ""
-  ) {
-    req.session.inputData = {
-      hasError: true,
-      message: "Invalid input - please check your data.",
-      title: enteredTitle,
-      content: enteredContent,
-    };
+router.post("/posts", Pcon.savePost);
 
-    res.redirect("/admin");
-    return; // or return res.redirect('/admin'); => Has the same effect
-  }
-  ///class
-  const post = new Posting(enteredTitle, enteredContent);
-  await post.save("posts");
+router.get("/posts/:id/edit", Pcon.getsinglepost);
 
-  res.redirect("/admin");
-});
+router.post("/posts/:id/edit", Pcon.editpost);
 
-router.get("/posts/:id/edit", async function (req, res) {
-  const post = new Posting(null, null, req.params.id);
-  await post.fetch("posts");
-
-  if (!post) {
-    return res.render("404"); // 404.ejs is missing at this point - it will be added later!
-  }
-
-  let sessionInputData = req.session.inputData;
-
-  if (!sessionInputData) {
-    sessionInputData = {
-      hasError: false,
-      title: post.title,
-      content: post.content,
-    };
-  }
-
-  req.session.inputData = null;
-
-  res.render("single-post", {
-    post: post,
-    inputData: sessionInputData,
-    csrfToken: req.csrfToken(),
-  });
-});
-
-router.post("/posts/:id/edit", async function (req, res) {
-  const enteredTitle = req.body.title;
-  const enteredContent = req.body.content;
-
-  if (
-    !enteredTitle ||
-    !enteredContent ||
-    enteredTitle.trim() === "" ||
-    enteredContent.trim() === ""
-  ) {
-    req.session.inputData = {
-      hasError: true,
-      message: "Invalid input - please check your data.",
-      title: enteredTitle,
-      content: enteredContent,
-    };
-
-    res.redirect(`/posts/${req.params.id}/edit`);
-    return;
-  }
-  ///class
-  const post = new Posting(enteredTitle, enteredContent, req.params.id);
-  post.save("posts");
-
-  res.redirect("/admin");
-});
-
-router.post("/posts/:id/delete", async function (req, res) {
-  ///class
-  const post = new Posting(null, null, req.params.id);
-  post.delete("posts");
-
-  res.redirect("/admin");
-});
+router.post("/posts/:id/delete", Pcon.delpost);
 
 module.exports = router;

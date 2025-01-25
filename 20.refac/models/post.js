@@ -29,6 +29,11 @@ class Posting {
     await db.getDb().collection(collection).deleteOne({ _id: this.id });
   }
 
+  static async fetchall(collection) {
+    const posts = await db.getDb().collection(collection).find().toArray();
+    return posts;
+  }
+
   async fetch(collection) {
     const post = await db
       .getDb()
