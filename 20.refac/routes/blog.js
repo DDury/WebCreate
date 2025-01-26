@@ -3,10 +3,10 @@ const bcrypt = require("bcryptjs");
 
 const db = require("../data/database");
 const Pcon = require("../controllers/post-controller.js");
+const Acon = require("../controllers/auth-controller.js");
+const guardRouter = require("../controllers/auth-controller.js");
 
 const router = express.Router();
-
-router.get("/", Pcon.getHome);
 
 router.get("/signup", function (req, res) {
   let sessionInputData = req.session.inputData;
@@ -158,6 +158,10 @@ router.post("/logout", function (req, res) {
   req.session.isAuthenticated = false;
   res.redirect("/");
 });
+
+router.get("/", Pcon.getHome);
+
+router.use(guardRouter);
 
 router.get("/admin", Pcon.getAdmin);
 

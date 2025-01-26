@@ -5,9 +5,9 @@ const getHome = (req, res) => {
 };
 
 const getAdmin = async (req, res) => {
-  if (!res.locals.isAuth) {
-    return res.status(401).render("401");
-  }
+  //   if (!res.locals.isAuth) {
+  //     return res.status(401).render("401");
+  //   }
 
   // const posts = await db.getDb().collection("posts").find().toArray();
   const posts = await Posting.fetchall("posts");
